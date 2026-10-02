@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Госуслуги</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
@@ -329,9 +330,6 @@
   </form>
 </div>
 
-<footer>
-  <div class="wrap">Пародийный макет для видео. Не является государственным сервисом.</div>
-</footer>
 
 <script>
   // Готовые темы. Всё, чего нет в списке, собирается по общему шаблону.
@@ -417,7 +415,6 @@
     const v = location.hash.slice(1);
     const id = views.includes(v) ? v : 'home';
     document.querySelectorAll('.view').forEach(e => e.classList.toggle('active', e.id === 'v-' + id));
-    document.querySelector('footer').style.display = id === 'sending' ? 'none' : '';
     window.scrollTo(0, 0);
   }
   function go(v){ location.hash = v; }
