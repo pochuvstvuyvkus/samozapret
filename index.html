@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Самозапрет на вайбкодинг</title>
+<title>Госуслуги</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blue:#0d4cd3; --blue-dark:#0b3fae; --blue-soft:#e5ecfb; --text:#0b1f33;
+    --blue:#0d4cd3; --blue-dark:#0b3fae; --blue-soft:#e5ecfb; --red:#ee3f58; --text:#0b1f33;
     --muted:#66727f; --line:#e1e7ef; --bg:#f5f7fa; --beige:#fdf3e1; --radius:16px;
   }
   *{box-sizing:border-box}
@@ -19,38 +19,54 @@
   .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 
   /* шапка */
-  header{background:#fff;border-bottom:1px solid var(--line)}
-  .hdr{display:flex;align-items:center;gap:32px;height:72px}
-  .logo{display:flex;align-items:baseline;gap:8px;color:var(--blue);font-weight:900;font-size:24px;letter-spacing:-.3px}
-  .logo small{font-size:10px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 5px;letter-spacing:.3px}
+  header{background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:2}
+  .hdr{display:flex;align-items:center;gap:36px;height:64px}
+  .logo{font-weight:900;font-size:26px;letter-spacing:-.5px;line-height:1}
+  .logo .g{color:var(--blue)}.logo .u{color:var(--red)}
   nav{display:flex;gap:28px;font-size:15px}
   nav a{color:var(--text)}
   nav a:hover{color:var(--blue)}
   .hdr-right{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:15px}
-  .avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:700}
+  .hdr-right .loc{color:var(--muted)}
+  .avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:700;font-size:14px}
 
-  /* главная */
-  .hero{background:#fff;padding:40px 0 48px}
-  .hero-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
-  .robot{width:88px;height:64px;border-radius:32px;background:linear-gradient(135deg,#4d7ff0,#8a5cf5);position:relative;box-shadow:0 10px 30px rgba(77,127,240,.35)}
-  .robot::before,.robot::after{content:"";position:absolute;top:24px;width:12px;height:14px;border-radius:6px;background:#fff}
-  .robot::before{left:28px}.robot::after{right:28px}
-  .search{width:100%;max-width:760px;display:flex;align-items:center;border:2px solid var(--blue);border-radius:12px;background:#fff;height:56px;padding:0 8px 0 20px}
-  .search input{flex:1;border:0;outline:0;font:inherit;font-size:17px}
+  /* синий блок главной */
+  .hero{background:linear-gradient(180deg,#2f6bff 0%,#1e5ae8 100%);color:#fff;padding:28px 0 44px}
+  .cats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+  .cat{display:flex;flex-direction:column;align-items:center;gap:8px;width:112px;color:#fff;font-size:13px;text-align:center;line-height:1.25;opacity:.95}
+  .cat svg{width:28px;height:28px}
+  .cat:hover{opacity:1}
+  .hero-main{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:center;max-width:980px;margin:0 auto}
+  .robot-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;cursor:pointer;border:0;background:none;color:#fff;padding:0}
+  .robot{position:relative;width:150px;height:150px;animation:float 4s ease-in-out infinite}
+  .robot .ball{position:absolute;inset:22px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#8fb4ff 0%,#4a7dff 35%,#1d4fd8 70%,#123aa8 100%);
+    box-shadow:0 18px 40px rgba(6,30,110,.45), inset -8px -10px 20px rgba(0,0,40,.25)}
+  .robot .eye{position:absolute;top:calc(50% - 7px);width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.8)}
+  .robot .eye.l{left:calc(50% - 22px)}.robot .eye.r{right:calc(50% - 22px)}
+  .robot .ear{position:absolute;top:calc(50% - 22px);width:20px;height:44px;border-radius:12px;background:linear-gradient(180deg,#fff,#d9e2f5);box-shadow:0 6px 14px rgba(0,0,0,.2)}
+  .robot .ear.l{left:8px}.robot .ear.r{right:8px}
+  @keyframes float{50%{transform:translateY(-6px)}}
+  .robot-hint{background:rgba(255,255,255,.18);border-radius:20px;padding:6px 14px;font-size:14px}
+  .hero-right{display:flex;flex-direction:column;gap:14px}
+  .hero-right h1{color:#fff;margin:0;font-size:28px}
+  .search{display:flex;align-items:center;background:#fff;border-radius:12px;height:56px;padding:0 8px 0 20px}
+  .search input{flex:1;border:0;outline:0;font:inherit;font-size:17px;color:var(--text);min-width:0}
   .search button{background:var(--blue);color:#fff;border:0;border-radius:8px;height:40px;padding:0 20px;font-weight:700}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-  .chip{background:var(--blue-soft);color:var(--blue);border-radius:8px;padding:8px 14px;font-size:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:rgba(255,255,255,.18);color:#fff;border-radius:8px;padding:8px 14px;font-size:14px;border:0}
+  .chip:hover{background:rgba(255,255,255,.28)}
 
   h1{font-size:32px;font-weight:900;margin:0 0 20px;line-height:1.2}
-  h2{font-size:26px;font-weight:900;margin:0 0 20px}
-  section.block{padding:40px 0 8px}
+  h2{font-size:30px;font-weight:900;margin:0 0 24px}
+  section.block{padding:44px 0 8px}
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .card{background:#fff;border-radius:var(--radius);padding:24px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 1px 2px rgba(11,31,51,.06);transition:box-shadow .15s,transform .15s;color:var(--text)}
-  .card:hover{box-shadow:0 8px 24px rgba(11,31,51,.12);transform:translateY(-2px)}
-  .card .title{font-size:18px;font-weight:700}
-  .card .ico{align-self:flex-end;width:96px;height:84px}
-  .card.hot{outline:2px solid transparent}
-  .badge{display:inline-block;background:#ee3f58;color:#fff;font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:10px}
+  .card{position:relative;background:#fff;border:2px solid transparent;border-radius:20px;padding:24px;min-height:250px;display:flex;flex-direction:column;gap:22px;box-shadow:0 2px 6px rgba(11,31,51,.06);transition:box-shadow .15s,transform .15s,border-color .15s;color:var(--text)}
+  .card:hover{box-shadow:0 10px 28px rgba(11,31,51,.12);transform:translateY(-2px)}
+  .card.hot{border-color:var(--blue)}
+  .card .ico{width:110px;height:84px;align-self:center}
+  .card .title{font-size:18px;font-weight:400;line-height:1.35}
+  .badge{position:absolute;top:16px;right:16px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;border-radius:20px;padding:3px 12px}
   .pop{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .pop a{background:#fff;border-radius:var(--radius);padding:20px 24px;color:var(--text);display:flex;justify-content:space-between;align-items:center}
   .pop a:hover{color:var(--blue)}
@@ -59,7 +75,7 @@
   .page{padding-top:24px;padding-bottom:64px}
   .back{display:inline-flex;align-items:center;gap:6px;font-size:15px;margin-bottom:20px}
   .panel{background:#fff;border-radius:var(--radius);padding:40px 48px;max-width:860px}
-  .lead{margin:0 0 24px;color:var(--text)}
+  .lead{margin:0 0 24px}
   .note{background:var(--beige);border-radius:12px;padding:20px 24px;margin-bottom:28px}
   .note b{display:block;margin-bottom:6px}
   .panel h3{font-size:18px;margin:24px 0 10px}
@@ -69,7 +85,6 @@
   .btn{border:0;border-radius:8px;height:48px;padding:0 28px;font-weight:700;font-size:16px}
   .btn-primary{background:var(--blue);color:#fff}
   .btn-primary:hover{background:var(--blue-dark)}
-  .btn-primary:disabled{background:#9db4ea;cursor:not-allowed}
   .btn-sec{background:var(--blue-soft);color:var(--blue)}
 
   /* форма */
@@ -81,13 +96,13 @@
   .opt.on{border-color:var(--blue);background:#f6f9ff}
   .opt.on .radio{border-color:var(--blue)}
   .opt.on .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--blue)}
-  .opt b{margin-right:6px}
   .opt div{flex:1}
-  .opt span.hint{color:var(--muted)}
+  .opt b{margin-right:6px}
+  .opt .hint{color:var(--muted)}
 
   /* отправка */
-  .center{min-height:calc(100vh - 73px);display:grid;place-items:center;padding:24px}
-  .sending{background:#fff;border-radius:var(--radius);padding:48px 64px;text-align:center;min-width:340px}
+  .center{min-height:calc(100vh - 65px);display:grid;place-items:center;padding:24px}
+  .sending{background:#fff;border-radius:var(--radius);padding:48px 64px;text-align:center;min-width:300px}
   .spin{width:48px;height:48px;border-radius:50%;border:4px solid var(--blue-soft);border-top-color:var(--blue);animation:r .9s linear infinite;margin:0 auto 20px}
   @keyframes r{to{transform:rotate(360deg)}}
   .sending .t{font-size:20px;font-weight:700}
@@ -97,22 +112,52 @@
   dl{display:grid;grid-template-columns:200px 1fr;gap:10px 16px;margin:24px 0 0}
   dt{color:var(--muted)}dd{margin:0}
 
-  footer{background:#fff;border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px;margin-top:40px}
+  /* чат с роботом */
+  .chat{position:fixed;right:24px;bottom:24px;width:380px;max-width:calc(100vw - 32px);height:540px;max-height:calc(100vh - 48px);background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(11,31,51,.25);display:none;flex-direction:column;overflow:hidden;z-index:10}
+  .chat.open{display:flex}
+  .chat-h{background:var(--blue);color:#fff;display:flex;align-items:center;gap:12px;padding:14px 16px}
+  .chat-h .mini{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8fb4ff,#1d4fd8);position:relative;flex:none}
+  .chat-h .mini::before,.chat-h .mini::after{content:"";position:absolute;top:15px;width:5px;height:5px;border-radius:50%;background:#fff}
+  .chat-h .mini::before{left:11px}.chat-h .mini::after{right:11px}
+  .chat-h b{display:block}.chat-h small{opacity:.8}
+  .chat-h .x{margin-left:auto;background:none;border:0;color:#fff;font-size:26px;line-height:1;padding:0 4px}
+  .msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+  .m{max-width:85%;padding:10px 14px;border-radius:14px;font-size:15px;white-space:pre-line}
+  .m.bot{background:#fff;align-self:flex-start;border-bottom-left-radius:4px}
+  .m.me{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+  .quick{display:flex;flex-wrap:wrap;gap:8px}
+  .quick button{background:#fff;border:1px solid var(--blue);color:var(--blue);border-radius:16px;padding:6px 12px;font-size:14px}
+  .quick button:hover{background:var(--blue-soft)}
+  .typing{align-self:flex-start;background:#fff;border-radius:14px;padding:12px 16px;display:flex;gap:4px}
+  .typing i{width:6px;height:6px;border-radius:50%;background:#b5c0cc;animation:bl 1s infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes bl{50%{opacity:.3}}
+  .chat-f{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+  .chat-f input{flex:1;border:1px solid var(--line);border-radius:10px;padding:0 12px;height:42px;font:inherit;outline:0;min-width:0}
+  .chat-f input:focus{border-color:var(--blue)}
+  .chat-f button{background:var(--blue);color:#fff;border:0;border-radius:10px;width:42px;height:42px;font-size:18px}
+
+  footer{background:#fff;border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px;margin-top:40px}
 
   .view{display:none}.view.active{display:block}
 
   @media (max-width:900px){
     nav{display:none}
+    .hero-main{grid-template-columns:1fr;gap:20px;text-align:center}
+    .chips{justify-content:center}
     .cards{grid-template-columns:repeat(2,1fr)}
     .pop{grid-template-columns:1fr}
     .panel{padding:28px 20px}
     dl{grid-template-columns:1fr}
+    .cat{width:88px;font-size:12px}
   }
   @media (max-width:520px){
     .wrap{padding:0 16px}
     .cards{grid-template-columns:1fr}
     h1{font-size:26px}
-    .hdr-right span{display:none}
+    .hero-right h1{font-size:22px}
+    .hdr-right .loc{display:none}
+    .chat{right:16px;bottom:16px}
   }
 </style>
 </head>
@@ -120,16 +165,15 @@
 
 <header>
   <div class="wrap hdr">
-    <a class="logo" href="#home">госуслуги</a>
+    <a class="logo" href="#home"><span class="g">гос</span><span class="u">услуги</span></a>
     <nav>
-      <a href="#home">Заявления</a>
-      <a href="#home">Документы</a>
-      <a href="#home">Платежи</a>
-      <a href="#home">Помощь</a>
+      <a href="#home">Гражданам</a>
+      <a href="#home">Предпринимателям</a>
+      <a href="#home">Иностранцам</a>
     </nav>
     <div class="hdr-right">
-      <span>Москва</span>
-      <div class="avatar">ВК</div>
+      <span class="loc">Москва</span>
+      <div class="avatar">ИИ</div>
     </div>
   </div>
 </header>
@@ -137,17 +181,33 @@
 <!-- 1. Главная -->
 <main id="v-home" class="view">
   <div class="hero">
-    <div class="wrap hero-inner">
-      <div class="robot"></div>
-      <form class="search" onsubmit="event.preventDefault();go('service')">
-        <input placeholder="Задайте вопрос или найдите услугу" value="">
-        <button>Найти</button>
-      </form>
-      <div class="chips">
-        <a class="chip" href="#service">Самозапрет на вайбкодинг</a>
-        <a class="chip" href="#home">Справка о покрытии тестами</a>
-        <a class="chip" href="#home">Запись на код-ревью</a>
-        <a class="chip" href="#home">Отпуск без ноутбука</a>
+    <div class="wrap">
+      <div class="cats">
+        <a class="cat" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>Популярные услуги</a>
+        <a class="cat" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg>Здоровье</a>
+        <a class="cat" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 7h16v12H4zM4 7l2-3h12l2 3"/></svg>Справки Выписки</a>
+        <a class="cat" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M9 9h6M9 13h6"/></svg>Документы</a>
+        <a class="cat" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 10 12 4l8 6v10H4z"/><path d="M10 20v-6h4v6"/></svg>Квартира Земля</a>
+        <a class="cat" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Пенсии Пособия</a>
+        <a class="cat" href="#service"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="m6.5 6.5 11 11"/></svg>Самозапреты</a>
+      </div>
+      <div class="hero-main">
+        <button class="robot-wrap" onclick="openChat()" aria-label="Открыть чат с роботом">
+          <div class="robot"><div class="ear l"></div><div class="ear r"></div><div class="ball"></div><div class="eye l"></div><div class="eye r"></div></div>
+          <span class="robot-hint">Спросите робота Макса</span>
+        </button>
+        <div class="hero-right">
+          <h1>Госуслуги — просто и удобно</h1>
+          <form class="search" onsubmit="event.preventDefault();openChat(this.q.value);this.q.value=''">
+            <input name="q" placeholder="Введите запрос, например: самозапрет">
+            <button>Найти</button>
+          </form>
+          <div class="chips">
+            <button class="chip" data-chip>Самозапрет на вайбкодинг</button>
+            <button class="chip" onclick="openChat()">Записаться к врачу</button>
+            <button class="chip" onclick="openChat()">Заменить паспорт</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -157,20 +217,21 @@
       <h2>Новое на портале</h2>
       <div class="cards">
         <a class="card hot" href="#service">
-          <div><span class="badge">Новое</span><div class="title">Установите самозапрет на вайбкодинг</div></div>
-          <svg class="ico" viewBox="0 0 96 84" fill="none"><rect x="6" y="8" width="84" height="62" rx="8" fill="#e5ecfb"/><rect x="6" y="8" width="84" height="12" rx="6" fill="#0d4cd3"/><path d="M36 36 26 45l10 9M60 36l10 9-10 9M53 32l-10 26" stroke="#0d4cd3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="76" cy="66" r="14" fill="#ee3f58"/><path d="m69 59 14 14" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+          <span class="badge">Новое</span>
+          <svg class="ico" viewBox="0 0 110 84" fill="none" stroke="#0b1f33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="14" width="62" height="44" rx="4"/><path d="M14 66h80"/><path d="m46 28-8 8 8 8M62 28l8 8-8 8M57 25l-8 22" stroke="#0d4cd3"/><circle cx="84" cy="16" r="11" fill="#fff" stroke="#ee3f58"/><path d="m76.5 8.5 15 15" stroke="#ee3f58"/></svg>
+          <div class="title" data-card-title>Установите самозапрет на вайбкодинг</div>
         </a>
         <a class="card" href="#home">
-          <div class="title">Подайте жалобу на CSS-селекторы</div>
-          <svg class="ico" viewBox="0 0 96 84" fill="none"><rect x="14" y="6" width="58" height="72" rx="8" fill="#e5ecfb"/><path d="M26 26h34M26 38h34M26 50h22" stroke="#0d4cd3" stroke-width="4" stroke-linecap="round"/><circle cx="72" cy="60" r="16" fill="#0d4cd3"/><path d="M72 52v10M72 67v1" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+          <svg class="ico" viewBox="0 0 110 84" fill="none" stroke="#0b1f33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="30" y="8" width="50" height="66" rx="4"/><path d="M40 26h30M40 38h30M40 50h18"/><circle cx="80" cy="62" r="12" fill="#fff" stroke="#0d4cd3"/><path d="M80 56v7M80 68v.5" stroke="#0d4cd3"/></svg>
+          <div class="title">Подайте жалобу на зависший коллбэк</div>
         </a>
         <a class="card" href="#home">
+          <svg class="ico" viewBox="0 0 110 84" fill="none" stroke="#0b1f33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="20" r="7"/><circle cx="34" cy="64" r="7"/><circle cx="76" cy="42" r="7" stroke="#0d4cd3"/><path d="M34 27v30M34 40c0-10 20-6 35 2"/></svg>
           <div class="title">Получите выписку из истории коммитов</div>
-          <svg class="ico" viewBox="0 0 96 84" fill="none"><circle cx="24" cy="20" r="9" fill="#0d4cd3"/><circle cx="24" cy="64" r="9" fill="#0d4cd3"/><circle cx="70" cy="42" r="9" fill="#e5ecfb" stroke="#0d4cd3" stroke-width="4"/><path d="M24 29v26M24 40c0-10 20-6 37 2" stroke="#0d4cd3" stroke-width="4" stroke-linecap="round"/></svg>
         </a>
         <a class="card" href="#home">
-          <div class="title">Оформите пособие за легаси-код</div>
-          <svg class="ico" viewBox="0 0 96 84" fill="none"><rect x="10" y="20" width="76" height="50" rx="8" fill="#e5ecfb"/><rect x="10" y="30" width="76" height="10" fill="#0d4cd3"/><path d="M22 56h20" stroke="#0d4cd3" stroke-width="4" stroke-linecap="round"/></svg>
+          <svg class="ico" viewBox="0 0 110 84" fill="none" stroke="#0b1f33" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="20" width="78" height="48" rx="6"/><path d="M16 32h78" stroke="#0d4cd3"/><path d="M28 54h22"/></svg>
+          <div class="title">Оформите пособие за поддержку легаси-кода</div>
         </a>
       </div>
     </div>
@@ -193,25 +254,17 @@
   <div class="wrap page">
     <a class="back" href="#home">‹ Все услуги</a>
     <div class="panel">
-      <h1>Установление самозапрета на вайбкодинг</h1>
-      <p class="lead">Эта услуга поможет вам временно прекратить вайбкодить, чтобы вернуть фокус, дисциплину и доводить дела до конца.</p>
-      <div class="note">
-        <b>Чего касается самозапрет</b>
-        Автоматическая генерация кода «на вайбе» без планирования, архитектуры и доведения до продакшена
-      </div>
+      <h1 data-t="h1"></h1>
+      <p class="lead" data-t="lead"></p>
+      <div class="note"><b>Чего касается самозапрет</b><span data-t="scope"></span></div>
       <h3>Какой самозапрет можно установить</h3>
-      <ul>
-        <li>Полный, который включает в себя все формы вайбкодинга (от идеи до деплоя)</li>
-        <li>На написание нового кода без чёткой цели и дедлайна</li>
-      </ul>
+      <ul><li data-t="full"></li><li data-t="part"></li></ul>
       <h3>Срок действия</h3>
       <p style="margin:0">Минимум 2 календарных дня</p>
       <h3>Результат</h3>
       <p style="margin:0 0 8px">Уведомление о включении самозапрета придёт в личный кабинет</p>
       <p style="margin:0">Самозапрет начнёт действовать на следующий день после получения уведомления</p>
-      <div class="actions">
-        <button class="btn btn-primary" onclick="go('form')">Начать</button>
-      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="go('form')">Начать</button></div>
     </div>
   </div>
 </main>
@@ -223,15 +276,11 @@
     <div class="panel">
       <div class="step">Шаг 1 из 2</div>
       <h1>Какой самозапрет установить?</h1>
-      <div id="g-type">
-        <label class="opt on"><input type="radio" name="type" value="Полный" checked><span class="radio"></span><div><b>Полный</b><span class="hint">Все формы вайбкодинга: от идеи до деплоя</span></div></label>
-        <label class="opt"><input type="radio" name="type" value="На новый код без цели и дедлайна"><span class="radio"></span><div><b>На новый код без цели и дедлайна</b><span class="hint">Рефакторить старое и чинить прод разрешается</span></div></label>
-      </div>
+      <label class="opt on"><input type="radio" name="type" value="Полный" checked><span class="radio"></span><div><b>Полный</b><span class="hint" data-t="fullHint"></span></div></label>
+      <label class="opt"><input type="radio" name="type" value="part"><span class="radio"></span><div><b data-t="partName"></b><span class="hint" data-t="partHint"></span></div></label>
       <h3>Срок действия</h3>
-      <div id="g-term">
-        <label class="opt on"><input type="radio" name="term" value="2 дня" checked><span class="radio"></span><div><b>2 дня</b><span class="hint">Минимальный срок</span></div></label>
-        <label class="opt"><input type="radio" name="term" value="30 дней"><span class="radio"></span><div><b>30 дней</b><span class="hint">Рекомендуется при трёх и более незаконченных пет-проектах</span></div></label>
-      </div>
+      <label class="opt on"><input type="radio" name="term" value="2 дня" checked><span class="radio"></span><div><b>2 дня</b><span class="hint">Минимальный срок</span></div></label>
+      <label class="opt"><input type="radio" name="term" value="30 дней"><span class="radio"></span><div><b>30 дней</b><span class="hint" data-t="longHint"></span></div></label>
       <div class="actions">
         <button class="btn btn-primary" onclick="send()">Далее</button>
         <button class="btn btn-sec" onclick="go('service')">Отмена</button>
@@ -246,7 +295,7 @@
     <div class="sending">
       <div class="spin"></div>
       <div class="t">Отправляем заявление</div>
-      <div class="s" id="sending-sub">Уведомляем IDE</div>
+      <div class="s" id="sending-sub"></div>
     </div>
   </div>
 </main>
@@ -260,22 +309,109 @@
       <span class="status">Самозапрет установлен</span>
       <dl style="text-align:left">
         <dt>Номер заявления</dt><dd id="d-num"></dd>
+        <dt>Самозапрет</dt><dd id="d-topic"></dd>
         <dt>Вид самозапрета</dt><dd id="d-type"></dd>
         <dt>Срок действия</dt><dd id="d-term"></dd>
-        <dt>Уведомлены</dt><dd>VS Code, Cursor, Claude Code, ChatGPT</dd>
+        <dt>Уведомлены</dt><dd data-t="notified"></dd>
       </dl>
-      <div class="actions" style="justify-content:center">
-        <button class="btn btn-primary" onclick="go('home')">На главную</button>
-      </div>
+      <div class="actions" style="justify-content:center"><button class="btn btn-primary" onclick="go('home')">На главную</button></div>
     </div>
   </div>
 </main>
+
+<!-- чат с роботом -->
+<div class="chat" id="chat">
+  <div class="chat-h"><div class="mini"></div><div><b>Робот Макс</b><small>виртуальный помощник</small></div><button class="x" onclick="closeChat()" aria-label="Закрыть">×</button></div>
+  <div class="msgs" id="msgs"></div>
+  <form class="chat-f" onsubmit="event.preventDefault();userSays(this.m.value);this.m.value=''">
+    <input name="m" placeholder="Напишите, например: доставку еды" autocomplete="off">
+    <button aria-label="Отправить">➤</button>
+  </form>
+</div>
 
 <footer>
   <div class="wrap">Пародийный макет для видео. Не является государственным сервисом.</div>
 </footer>
 
 <script>
+  // Готовые темы. Всё, чего нет в списке, собирается по общему шаблону.
+  const PRESETS = {
+    'вайбкодинг': {
+      lead:'Эта услуга поможет вам временно прекратить вайбкодить, чтобы вернуть фокус, дисциплину и доводить дела до конца.',
+      scope:'Автоматическая генерация кода «на вайбе» без планирования, архитектуры и доведения до продакшена',
+      full:'Полный, который включает в себя все формы вайбкодинга (от идеи до деплоя)',
+      part:'На написание нового кода без чёткой цели и дедлайна',
+      fullHint:'Все формы вайбкодинга: от идеи до деплоя',
+      partName:'На новый код без цели и дедлайна', partHint:'Рефакторить старое и чинить прод разрешается',
+      longHint:'Рекомендуется при трёх и более незаконченных пет-проектах',
+      steps:['Уведомляем IDE','Отзываем доступ к нейросетям','Прячем ноутбук'],
+      notified:'VS Code, Cursor, Claude Code, ChatGPT'
+    },
+    'доставку еды': {
+      lead:'Эта услуга поможет вам временно отказаться от доставки, чтобы снова начать готовить и сэкономить.',
+      scope:'Заказ еды через приложения доставки, рестораны и «просто кофе в офис»',
+      full:'Полный, который включает все приложения доставки и самовывоз',
+      part:'Только на заказы после 22:00',
+      fullHint:'Все приложения доставки и самовывоз',
+      partName:'Только ночные заказы', partHint:'Обед в рабочее время разрешается',
+      longHint:'Рекомендуется, если курьеры здороваются с вами по имени',
+      steps:['Уведомляем курьеров','Удаляем промокоды','Размораживаем пельмени'],
+      notified:'Яндекс Еда, Delivery Club, Самокат, курьер Арсений'
+    },
+    'маркетплейсы': {
+      lead:'Эта услуга поможет вам временно прекратить покупки на маркетплейсах, чтобы сохранить деньги и место в квартире.',
+      scope:'Покупки на маркетплейсах, включая «положить в корзину просто посмотреть»',
+      full:'Полный, который включает все маркетплейсы и пункты выдачи',
+      part:'Только на товары дешевле 500 ₽',
+      fullHint:'Все маркетплейсы и пункты выдачи',
+      partName:'Только мелочи до 500 ₽', partHint:'Бытовая химия и подарки разрешаются',
+      longHint:'Рекомендуется, если в пункте выдачи вас узнают в лицо',
+      steps:['Уведомляем пункт выдачи','Очищаем корзину','Прячем карту'],
+      notified:'Wildberries, Ozon, Яндекс Маркет, пункт выдачи у дома'
+    },
+    'сериалы': {
+      lead:'Эта услуга поможет вам временно прекратить смотреть сериалы, чтобы высыпаться и успевать важное.',
+      scope:'Просмотр сериалов, включая «ещё одну серию» после полуночи',
+      full:'Полный, который включает все стриминги и сайты',
+      part:'Только на просмотр после 23:00',
+      fullHint:'Все стриминги и сайты',
+      partName:'Только после 23:00', partHint:'Одна серия за ужином разрешается',
+      longHint:'Рекомендуется, если вы досмотрели сериал, который начинали ради фона',
+      steps:['Уведомляем стриминги','Отключаем автовоспроизведение','Выдаём подушку'],
+      notified:'Кинопоиск, Okko, Wink, иви'
+    }
+  };
+  function generic(t){
+    return {
+      lead:'Эта услуга поможет вам временно ограничить себя, чтобы вернуть фокус, дисциплину и контроль над временем.',
+      scope:'Всё, что связано с темой «' + t + '»: дома, на работе, в интернете и с друзьями',
+      full:'Полный, без исключений',
+      part:'Частичный, только в будние дни',
+      fullHint:'Без исключений и выходных',
+      partName:'Частичный', partHint:'В выходные разрешается',
+      longHint:'Рекомендуется, если срывались больше трёх раз',
+      steps:['Уведомляем устройства','Убираем соблазны','Сообщаем близким'],
+      notified:'Все ваши устройства и близкие'
+    };
+  }
+
+  let topic = 'вайбкодинг', T = PRESETS[topic];
+  function setTopic(raw){
+    let t = String(raw || '').trim().replace(/^самозапрет\s*/i,'').replace(/^на\s+/i,'').replace(/[.!?]+$/,'').trim().toLowerCase();
+    if (!t) return false;
+    t = t.slice(0, 60);
+    topic = t;
+    T = PRESETS[t] || generic(t);
+    document.querySelector('[data-card-title]').textContent = 'Установите самозапрет на ' + t;
+    document.querySelector('[data-chip]').textContent = 'Самозапрет на ' + t;
+    document.querySelectorAll('[data-t]').forEach(e => { e.textContent = T[e.dataset.t] || ''; });
+    document.querySelector('[data-t="h1"]').textContent = 'Установление самозапрета на ' + t;
+    const u = new URL(location.href);
+    t === 'вайбкодинг' ? u.searchParams.delete('na') : u.searchParams.set('na', t);
+    history.replaceState(null, '', u);
+    return true;
+  }
+
   const views = ['home','service','form','sending','done'];
   function show(){
     const v = location.hash.slice(1);
@@ -286,27 +422,72 @@
   }
   function go(v){ location.hash = v; }
   addEventListener('hashchange', show);
-  show();
+  document.querySelector('[data-chip]').onclick = () => go('service');
 
-  // радио-карточки
   document.querySelectorAll('.opt input').forEach(inp => inp.addEventListener('change', () => {
     document.querySelectorAll(`input[name="${inp.name}"]`).forEach(i => i.closest('.opt').classList.toggle('on', i.checked));
   }));
 
   function send(){
-    const type = document.querySelector('input[name=type]:checked').value;
+    const typeIn = document.querySelector('input[name=type]:checked');
+    const type = typeIn.value === 'part' ? T.partName : 'Полный';
     const term = document.querySelector('input[name=term]:checked').value;
     go('sending');
     const sub = document.getElementById('sending-sub');
-    const steps = ['Уведомляем IDE', 'Отзываем доступ к нейросетям', 'Прячем ноутбук'];
-    steps.forEach((t, i) => setTimeout(() => sub.textContent = t, i * 1100));
+    T.steps.forEach((t, i) => setTimeout(() => sub.textContent = t, i * 1100));
     setTimeout(() => {
       document.getElementById('d-num').textContent = String(Math.floor(1e9 + Math.random() * 9e9));
+      document.getElementById('d-topic').textContent = 'На ' + topic;
       document.getElementById('d-type').textContent = type;
       document.getElementById('d-term').textContent = term;
       go('done');
-    }, steps.length * 1100 + 300);
+    }, T.steps.length * 1100 + 300);
   }
+
+  // чат: робот спрашивает, на что поставить самозапрет
+  const msgs = document.getElementById('msgs');
+  let greeted = false;
+  function add(text, who){
+    const d = document.createElement('div'); d.className = 'm ' + who; d.textContent = text;
+    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; return d;
+  }
+  function botSays(text, quick){
+    const ty = document.createElement('div'); ty.className = 'typing'; ty.innerHTML = '<i></i><i></i><i></i>';
+    msgs.appendChild(ty); msgs.scrollTop = msgs.scrollHeight;
+    return new Promise(res => setTimeout(() => {
+      ty.remove(); add(text, 'bot');
+      if (quick){
+        const q = document.createElement('div'); q.className = 'quick';
+        quick.forEach(s => { const b = document.createElement('button'); b.type = 'button'; b.textContent = s; b.onclick = () => { q.remove(); userSays(s); }; q.appendChild(b); });
+        msgs.appendChild(q); msgs.scrollTop = msgs.scrollHeight;
+      }
+      res();
+    }, 700));
+  }
+  function ask(){
+    return botSays('На что вы хотите установить самозапрет? Выберите вариант или напишите свой.', ['Вайбкодинг','Доставку еды','Маркетплейсы','Сериалы']);
+  }
+  function openChat(prefill){
+    document.getElementById('chat').classList.add('open');
+    if (!greeted){
+      greeted = true;
+      botSays('Здравствуйте! Я Макс, виртуальный помощник Госуслуг.').then(() => prefill ? userSays(prefill) : ask());
+    } else if (prefill) userSays(prefill);
+    setTimeout(() => document.querySelector('.chat-f input').focus(), 50);
+  }
+  function closeChat(){ document.getElementById('chat').classList.remove('open'); }
+  async function userSays(text){
+    text = String(text || '').trim();
+    if (!text) return;
+    add(text, 'me');
+    msgs.querySelectorAll('.quick').forEach(q => q.remove());
+    if (!setTopic(text)) return ask();
+    await botSays('Понял. Подготовил услугу «Установление самозапрета на ' + topic + '». Открываю заявление.');
+    setTimeout(() => { closeChat(); go('service'); }, 900);
+  }
+
+  setTopic(new URLSearchParams(location.search).get('na') || 'вайбкодинг');
+  show();
 </script>
 </body>
 </html>
